@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import allure
 import requests
 from utils.constants import BASE_URL
@@ -26,9 +24,10 @@ class APIClient:
         response = requests.delete(url)
         return response
 
-    @allure.step("Попытка создать курьера без логина или пароля")
-    def create_courier_without_login_or_password(self, data):
+    @allure.step("Создание курьера без пароля")
+    def create_courier_without_password(self, login):
         url = f"{self.base_url}/courier"
+        data = {"login": login}
         response = requests.post(url, json=data)
         return response
 
